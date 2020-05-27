@@ -6,4 +6,10 @@ mongoose.connect(`mongodb://${mongoHost}:27017/trello`, {
   useUnifiedTopology: true,
   ssl: false,
 });
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "error connection"));
+db.once("open", function () {
+  console.log("Connected on MongoDb");
+});
 module.exports = { mongoose };

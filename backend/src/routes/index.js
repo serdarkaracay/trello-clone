@@ -6,10 +6,17 @@ router.get("/", function (req, res, next) {
   res.send("respond with a resource");
 });
 
-router.post("/column", function (req, res, next) {
-  const column = new Column({ name: "test" }).save();
-  console.log(column);
-  res.send(column);
+router.post("/column", async function (req, res, next) {
+  debugger;
+  const column = new Column({ title: "test column" });
+  await column.save();
+
+  // res.send(column);
+
+  res.status(200).json(column);
+
+  //
+
 });
 
 module.exports = router;
